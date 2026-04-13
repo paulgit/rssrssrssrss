@@ -1,5 +1,6 @@
-# Use Bun's official image for building
-FROM oven/bun:1 AS base
+# Use Bun's Alpine image for building — the musl/Alpine variant of @next/swc
+# avoids AVX2 instructions that crash under QEMU when cross-building on Apple Silicon.
+FROM oven/bun:1-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -25,6 +26,12 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN apk upgrade --no-cache && \
+    rm -rf /usr/local/lib/node_modules/npm \
+           /usr/local/bin/npm \
+           /usr/local/bin/npx \
+           /usr/local/bin/corepack
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

@@ -10,8 +10,9 @@
     "format": "bunx biome check --fix --unsafe src/**/*.{ts,tsx,js,jsx,json,md,mdx}"
   },
   "dependencies": {
+    "geist": "^1.7.0",
     "lz-string": "^1.5.0",
-    "next": "16.1",
+    "next": "16.2.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "rss-parser": "^3.13.0"
@@ -33,5 +34,9 @@
     "@biomejs/biome",
     "@tailwindcss/oxide",
     "unrs-resolver"
-  ]
+  ],
+  "overrides": {
+    "picomatch": ">=4.0.4",
+    "brace-expansion": ">=5.0.5"
+  }
 }
