@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # ---------------------------------------------------------------------------
-# docker-build.sh — Build (and optionally push) the rssrssrss Docker image.
+# docker-build.sh — Build (and optionally push) the rssrssrssrss Docker
+#                   image.
 #
 # Usage:
 #   ./docker-build.sh [OPTIONS]
@@ -23,7 +24,7 @@
 set -euo pipefail
 
 # ── Defaults ────────────────────────────────────────────────────────────────
-IMAGE_REGISTRY="code.paulg.it/paulgit/rssrssrss"
+IMAGE_REGISTRY="code.paulg.it/paulgit/rssrssrssrss"
 PUSH=false
 
 # Auto-detect the native platform so local builds avoid QEMU emulation.
@@ -142,7 +143,7 @@ BUILD_ARGS=(
   --platform "${TARGET_PLATFORM}"
   --label "org.opencontainers.image.version=${APP_VERSION}"
   --label "org.opencontainers.image.revision=${GIT_SHA}"
-  --label "org.opencontainers.image.source=https://code.paulg.it/paulgit/rssrssrss"
+  --label "org.opencontainers.image.source=https://code.paulg.it/paulgit/rssrssrssrss"
   --tag "${IMAGE_TAG}"
   --tag "${IMAGE_REGISTRY}:latest"
 )
