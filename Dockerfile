@@ -1,7 +1,10 @@
-# Use Bun's Alpine image for building — the musl/Alpine variant of @next/swc
-# avoids AVX2 instructions that crash under QEMU when cross-building on Apple Silicon.
-FROM oven/bun:1-alpine AS base
-
+# syntax=docker/dockerfile:1
+#
+# Build stages use --platform=$BUILDPLATFORM so they always run natively on the
+# host machine (e.g. arm64 on Apple Silicon). The Next.js build output is pure
+# JavaScript, so the build architecture doesn't affect the final image at all.
+# Only the runner stage targets the requested $TARGETPLATFORM (e.g. linux/amd64).
+FROM --platform=$BUILDPLATFORM oven/bun:1-alpine AS base
 # Install dependencies only when needed
 FROM base AS deps
 WORKDIR /app

@@ -27,14 +27,7 @@ set -euo pipefail
 IMAGE_REGISTRY="code.paulg.it/paulgit/rssrssrssrss"
 PUSH=false
 
-# Auto-detect the native platform so local builds avoid QEMU emulation.
-# Can always be overridden with --platform.
-_host_arch=$(uname -m)
-case "${_host_arch}" in
-  arm64|aarch64) TARGET_PLATFORM="linux/arm64" ;;
-  x86_64|amd64)  TARGET_PLATFORM="linux/amd64" ;;
-  *)             TARGET_PLATFORM="linux/${_host_arch}" ;;
-esac
+TARGET_PLATFORM="linux/amd64"
 
 # ── Colour helpers (disabled when stdout is not a terminal) ─────────────────
 if [ -t 1 ]; then
