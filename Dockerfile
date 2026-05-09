@@ -35,6 +35,8 @@ RUN chown -R 65532:65532 /app
 FROM gcr.io/distroless/nodejs24-debian13:nonroot AS runner
 WORKDIR /app
 
+ARG ENV_APP_VERSION
+ENV ENV_APP_VERSION=${ENV_APP_VERSION}
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
